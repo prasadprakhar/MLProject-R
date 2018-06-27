@@ -169,6 +169,4 @@ Use the random forest model to predict the outcome of the validation test data t
 #~~~~~~ Predict on the validation test data based on the model with the highest accuracy ~~~~~#
 pred <-  predict(model_rf, newdata = validation_data,type = "class")
 pred
-
 ```
-
