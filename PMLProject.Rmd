@@ -117,7 +117,6 @@ Below we experiment with three different machine learning algorithms - Random Fo
 
 ```{r Models}
 #~~~~~~~~~~~~Model Based on Random Forest~~~~~~~~~~~~#
-
 model_rf <- randomForest(classe ~ ., data = mytraining)
 print(model_rf)
 pred_rf <- predict(model_rf, newdata = mytesting)
@@ -170,3 +169,7 @@ Use the random forest model to predict the outcome of the validation test data t
 pred <-  predict(model_rf, newdata = validation_data,type = "class")
 pred
 ```
+
+The data for this project come from this source: http://web.archive.org/web/20161224072740/http:/groupware.les.inf.puc-rio.br/har.
+
+
