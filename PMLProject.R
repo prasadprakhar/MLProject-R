@@ -1,4 +1,4 @@
-#~~~~~~~~Set the working directory ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+~~~~~~~~Set the working directory ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 setwd("C:/Working Directory/Office/Data Science/Coursera/Practical Machine Learning")
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -65,11 +65,7 @@ inTrain <- createDataPartition(y=train_data$classe, p = 0.6,list = FALSE)
 mytraining <- train_data[inTrain,]
 mytesting <- train_data[-inTrain,]
 
-
-
-
 #~~~~~~ Check and remove variables which have near zero values ~~~~~#
-
 nzvalue_train <- nearZeroVar(mytraining,saveMetrics = TRUE)
 nzvalue_train
 mytraining <- mytraining[,nzvalue_train$nzv==FALSE]
@@ -79,16 +75,13 @@ nzvalue_test <- nearZeroVar(mytesting,saveMetrics = TRUE)
 mytesting <- mytesting[,nzvalue_test$nzv==FALSE]
 dim(mytesting)
 
-
 #~~~~~~~~~~~~Model Based on Random Forest~~~~~~~~~~~~#
-
 model_rf <- randomForest(classe ~ ., data = mytraining)
 print(model_rf)
 pred_rf <- predict(model_rf, newdata = mytesting)
 confusionMatrix(mytesting$classe,pred_rf)
 confusionMatrix(mytesting$classe,pred_rf)$overall[1]
 outsamplerror_rf <- 1 - confusionMatrix(mytesting$classe,pred_rf)$overall[1]
-
 
 #~~~~~~~~Model based on lda~~~~~~~~~~~#
 model_lda <- train(classe ~ ., data = mytraining,method = "lda")
